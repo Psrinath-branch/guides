@@ -71,24 +71,24 @@
 ![image](https://github.com/bson-branch/guides/blob/master/images/dp_and_lags.png?raw=true)
 
 #### Datapoint (Field)
- 1. TIT (TMC Install Timestamp): The time app is first opened
-    - "Install Log Report" column name: Datetime
-    - Reporting API/Install Log field name: created
+1. TIT (TMC Install Timestamp): The time app is first opened
+ * "Install Log Report" column name: Datetime
+ * Reporting API/Install Log field name: created
 
 
- 2. DIT (Device Install Timestamp) : The time app is installed on the device.
-    - "Install Log Report" column name: Install Datetime
-    - Reporting API/Install Log field name: install_date
+2. DIT (Device Install Timestamp) : The time app is installed on the device.
+ * "Install Log Report" column name: Install Datetime
+ * Reporting API/Install Log field name: install_date
 
 
- 3. TCT (TMC Click Timestamp) : Timestamp of matched click
-    - "Install Log Report" column name: Click/Impression Datetime
-    - Reporting API/Install Log field name: session_datetime
+3. TCT (TMC Click Timestamp) : Timestamp of matched click
+ * "Install Log Report" column name: Click/Impression Datetime
+ * Reporting API/Install Log field name: session_datetime
 
 
- 4. TET (TMC Event Timestamp) : The time event is sent.
-    - "Event Log Report" column name: Datetime
-    - Reporting API/Event Log field name: created
+4. TET (TMC Event Timestamp) : The time event is sent.
+ * "Event Log Report" column name: Datetime
+ * Reporting API/Event Log field name: created
 
 
 #### Lag-time
@@ -98,14 +98,14 @@
 2. TCTDIT : Lag-time between TCT and DIT
  > Formula: DIT - TCT
 
-* Most of normal cases, this value is positive.
+ * Most of normal cases, this value is positive.
  Negative value does not always mean fraudulent install, and small volume of normal installs could fall into this category, so need to see and compare lag-time pattern across publishers.
 
-* For click injected installs, this value is between -100 and 0.
+ * For click injected installs, this value is between -100 and 0.
         May some normal installs could fall into between -100 and 0, but the amount should be a small faction.
         For click injecting publishers and sub-publishers, high percentage of installs are falled into this category.
 
 3. TITTET : Lag-time between TIT and TET.
  > Formula: TET - TIT
 
-* This lag-time is used to analyze user's post-install behavioral pattern.
+ * This lag-time is used to analyze user's post-install behavioral pattern.
