@@ -108,4 +108,4 @@
 3. TITTET : Lag-time between TIT and TET.
  > Formula: TET - TIT
 
-      - This lag-time is used to analyze user's post-install behavioral pattern.
+* This lag-time is used to analyze user's post-install behavioral pattern.
