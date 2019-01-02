@@ -1,7 +1,7 @@
 # Branch Guides
 
-## SDK Integration
- * Android
+## SDK Integration : Korean Translation
+ * [Android SDK 연동가이드 번역본](https://github.com/bson-branch/guides/blob/master/pages/apps/android.md)
  * iOS
  * Web
 
