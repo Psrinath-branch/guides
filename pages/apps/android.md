@@ -1,16 +1,16 @@
-## Integrate Branch
+## 브랜치 연동
 
-- ### Branch 설정
+- ### 브랜치 설정
 
-    - Complete the `Basic integration` within [Configure your dashboard](/pages/dashboard/integrate/)
+    - [Configure your dashboard](/pages/dashboard/integrate/) 문서의 `Basic integration`섹션내의 설정들을 완료합니다.
 
-    - Make sure `Always try to open app` and `I have an Android App` are both enabled
+    - `Always try to open app`와 `I have an Android App` 모두를 활성화 합니다.
 
-        ![image](https://github.com/bson-branch/guides/blob/master/images/pages/dashboard/android.png?raw=true)
+        ![image](https://github.com/bson-branch/guides/blob/master/img/pages/dashboard/android.png?raw=true)
 
-- ### Install Branch
+- ### 브랜치 설치
 
-    - Import the Branch SDK to your `build.gradle`
+    - `build.gradle`내에 Branch SDK를 임포트 합니다.
 
         ```java hl_lines="30 31 33 34 35 36"
         apply plugin: 'com.android.application'
@@ -54,9 +54,9 @@
         }
         ```
 
-- ### Configure app
+- ### 앱 설정
 
-    - Add Branch to your `AndroidManifest.xml`
+    - `AndroidManifest.xml`내에 브랜치관련 항목들을 추가합니다.
 
         ```xml hl_lines="9 17 26 27 28 29 30 31 32 34 35 36 37 38 39 40 44 45 46 47 49 50 51 52 53 54"
         <?xml version="1.0" encoding="utf-8"?>
@@ -120,19 +120,19 @@
         </manifest>
         ```
 
-    - Replace the following with values from your Branch Dashboard [App settings](https://dashboard.branch.io/account-settings/app) and [Link settings](https://dashboard.branch.io/link-settings)
+    - 아래의 값들을 Branch 대쉬보드의 [App settings](https://dashboard.branch.io/account-settings/app)와 [Link settings](https://dashboard.branch.io/link-settings)의 설정값들로 변경합니다
         - `androidexample`
         - `example.app.link`
         - `example-alternate.app.link`
         - `key_live_kaFuWw8WvY7yn1d9yYiP8gokwqjV0Sw`
         - `key_test_hlxrWC5Zx16DkYmWu4AHiimdqugRYMr`
 
-    !!! warning "Single Task launch mode required"
-        If there is no singleTask Activity instance in the system yet, a new one would be created and simply placed on top of the stack in the same Task. If you are using the Single Task mode as is, it should not restart your entire app. The Single Task mode instantiates the Main/Splash Activity only if it does not exist in the Activity Stack. If the Activity exists in the background, every subsequent intent to the Activity just brings it to the foreground. You can read more about Single Task mode [here](https://developer.android.com/guide/components/activities/tasks-and-back-stack.html#TaskLaunchModes).
+    !!! warning "Single Task launch mode설정이 필요합니다"
+        안드로이드 시스템상에 SingleTask Activity 인스턴스가 없다면, 동일 Task의 스택의 최상위에 새로운 Activity가 생성됩니다. Single Task 모드일 경우 앱 전체가 재시작되지 않을 것입니다. Single Task모드는 Main/Splash Activity가 Activity Stack내에 존재하지 않을때만 Main/Splash Activity를 인스턴트를 생성합니다. Main/Splash Activity가 백그라운드에 존재한다면, Main/Splash Activity로의 전달되는 모든 이후 Intent들은 이 Activity를 포그라운드로 전환시킬것입니다. Single Task 모드에 대한 자세한 내용은 [이곳](https://developer.android.com/guide/components/activities/tasks-and-back-stack.html#TaskLaunchModes)를 참조하시기 바랍니다.
 
-- ### Initialize Branch
+- ### 브랜치 초기화
 
-    - Add Branch to your `LauncherActivity.java`
+    - `LauncherActivity.java`에 Branch를 추가합니다.
 
     - *Java*
 
@@ -240,15 +240,15 @@
         }
         ```
 
-    !!! warning "Only initialize Branch in the Launcher activity"
-        The app will open through the Launcher activity, where Branch will initialize and retrieve the deep link data from the link click.
+    !!! warning "Branch SDK는 꼭 Launcher Activity에서 초기화 되어야 합니다."
+        앱은 Launcher Activity를 통해서 열릴것이고, 이 Activity에서 Branch SDK가 초기화 되고 클릭했던 링크의 데이터를 가져올 것입니다.
 
-    !!! warning "Always intialize Branch in `onStart()`"
-        Initializing Branch in other Android lifecyle methods, like `onResume()`, will lead to unintended behavior. `onStart()` is what makes the activity visible to the user, as the app prepares for the activity to enter the foreground and become interactive. Learn more [here](https://developer.android.com/guide/components/activities/activity-lifecycle.html).
+    !!! warning "`onStart()`에서만 Branch SDK를 초기화 되어야 합니다."
+        Branch SDK를 `onResume()`와 같은 다른 라이프사이클 메쏘드내에서 초기화 하면 의도되지 않은 문제가 발생할 수 있습니다. `onStart()`는 Activity를 사용자에게 보여지는 단계이며 앱이 포그라운드로 전환되어 사용자와의 상호작용을 하기 위한 준비를 하는 곳입니다. 좀더 자세한 사항은 [이곳](https://developer.android.com/guide/components/activities/activity-lifecycle.html)을 참고하시기 바랍니다.
 
-- ### Load Branch
+- ### 브랜치 로딩
 
-    - Add Branch to your `CustomApplicationClass.java`
+    - `CustomApplicationClass.java`에 Branch를 추가합니다.
 
     - *Java*
 
@@ -293,28 +293,28 @@
         }
         ```
 
-- ### Test deep link
+- ### 딥링크 테스트
 
-    - Create a deep link from the [Branch Dashboard](https://dashboard.branch.io/marketing)
+    - [Branch Dashboard](https://dashboard.branch.io/marketing)에서 딥링크를 생성합니다.
 
-    - Delete your app from the device
+    - 기기에서 앱을 삭제합니다.
 
-    - Compile your app to your device
+    - 컴파일후 기기에 앱을 설치합니다.
 
-    - Paste deep link in `Google Hangouts`
+    - `Google Hangouts`에 딥링크를 붙여 넣습니다.
 
-    - Click on the deep link to open your app
+    - 앱을 열기 위해 딥링크를 클릭합니다.
 
-    !!! tip "Testing deferred deep linking"
-    	Deferred deep linking is simply deep linking into an app that is not yet installed. Once the app is installed, the context is preserved and the user's first app-open will have the deep link data from the original Branch link. To test this, uninstall the app from your device, click the Branch link, and manually launch the app from Android Studio. You should be routed to the correct content within your app.
+    !!! tip "Deferred 딥링킹 테스트"
+    	Deferred 딥링킹은 클릭시 아직 앱이 설치되어 있지 않은 경우에 딥링킹을 수행하는 것입니다. 앱이 설치된 후 앱이 최초로 실행될때 클릭했던 브랜치 링크에 설정되었던 딥링크 데이터를 가져오게 됩니다. 이를 테스트 하기 위해서는 기기에서 앱을 삭제한 뒤, 브랜치 링크를 클릭하고, 앱을 수동으로 실행합니다. 앱이 오픈되면 앱내 해당 컨텐츠로 정상적으로 이동해야 합니다.
 
-## Implement features
+## 기능 구현
 
-- ### Create content reference
+- ### 컨텐츠 레퍼런스 생성
 
-    - The `Branch Universal Object` encapsulates the thing you want to share (content or user)
+    - `Branch Universal Object`는 컨텐츠 또는 유저 같이 공유하려는 것을 캡슐화 합니다.
 
-    - Uses the [Universal Object Properties](#/pages/links/integrate/#universal-object)
+    - [Universal Object Properties](#/pages/links/integrate/#universal-object)를 사용합니다.
 
     - *Java*
 
@@ -342,15 +342,15 @@
             .setContentMetadata(ContentMetadata().addCustomMetadata("key1", "value1"))
         ```
 
-- ### Create deep link
+- ### 딥링크 생성
 
-    - Creates a deep link URL with encapsulated data
+    - 캡슐화된 데이터로 딥링크 URL을 생성합니다.
 
-    - Needs a [Branch Universal Object](#create-content-reference)
+    - [Branch Universal Object](#컨텐츠-레퍼런스-생성)가 필요합니다.
 
-    - Uses [Deep Link Properties](/pages/links/integrate/)
+    - [Deep Link Properties](/pages/links/integrate/)를 사용합니다.
 
-    - Validate with the [Branch Dashboard](https://dashboard.branch.io/liveview/links)
+    - [Branch Dashboard](https://dashboard.branch.io/liveview/links)에서 데이터를 확인합니다.
 
     - *Java*
 
@@ -393,13 +393,13 @@
         })
         ```
 
-- ### Share deep link
+- ### 딥링크 공유
 
-    -  Will generate a Branch deep link and tag it with the channel the user selects
+    - 유저가 선택한 채널정보가 태깅된 브랜치 딥링크를 생성합니다.
 
-    - Needs a [Branch Universal Object](#create-content-reference)
+    - [Branch Universal Object](#컨텐츠-레퍼런스-생성)가 필요합니다.
 
-    - Uses [Deep Link Properties](/pages/links/integrate/)
+    - [Deep Link Properties](/pages/links/integrate/)를 사용합니다.
 
     - *Java*
 
@@ -469,13 +469,13 @@
         })
         ```
 
-- ### Read deep link
+- ### 딥링크 조회
 
-    - Retrieve Branch data from a deep link
+    - 딥링크에 설정된 브랜치 데이터를 조회합니다.
 
-    - Best practice to receive data from the `listener` (to prevent a race condition)
+    - (Race Condition)을 방지하기 위해서, `listener`를 통해서 데이터를 수신하는 것을 권장합니다.
 
-    - Returns [deep link properties](/pages/links/integrate/#read-deep-links)
+    - [deep link properties](/pages/links/integrate/#read-deep-links)가 반환됩니다.
 
     - *Java*
 
@@ -520,9 +520,9 @@
         val installParams = Branch.getInstance().firstReferringParams
         ```
 
-- ### Navigate to content
+- ### 컨텐츠로의 이동
 
-    - Do stuff with the Branch deep link data
+    - 브랜치 딥링크 데이터를 읽어와서 컨텐츠로의 이동을 처리합니다.
 
     - *Java*
 
@@ -585,17 +585,17 @@
         }, this.intent.data, this)
         ```
 
-- ### Display content
+- ### 컨텐츠 노출
 
-    - List content on `Google Search` with `App Indexing`
+    - `App Indexing`을 사용해서 `Google Search`에 컨텐츠들을 노출시킵니다.
 
-    - Enable App Indexing on the [Branch Dashboard](#https://dashboard.branch.io/search)
+    - [Branch Dashboard](#https://dashboard.branch.io/search)에서 앱 인덱싱을 활성화 합니다.
 
-    - Validate with the [App indexing validator](https://branch.io/resources/app-indexing/)
+    - [App indexing validator](https://branch.io/resources/app-indexing/)로 검증합니다.
 
-    - Needs a [Branch Universal Object](#create-content-reference)
+    - [Branch Universal Object](#컨텐츠-레퍼런스-생성)가 필요합니다.
 
-    - Needs `build.gradle` library
+    - `build.gradle`에 앱인덱싱 라이브러리를 추가합니다.
 
         ```java
         compile 'com.google.android.gms:play-services-appindexing:9.+'
@@ -614,15 +614,15 @@
         ```
 
 
-- ### Track content
+- ### 컨텐츠 트래킹
 
-    - Track how many times a piece of content is viewed
+    - 사용자가 컨텐츠를 조회를 트래킹합니다.
 
-    - Needs a [Branch Universal Object](#create-content-reference)
+    - [Branch Universal Object](#컨텐츠-레퍼런스-생성)가 필요합니다.
 
-    - Uses [Track content properties](#track-content-properties)
+    - [Track content properties](#track-content-properties)를 사용합니다.
 
-    - Validate with the [Branch Dashboard](https://dashboard.branch.io/liveview/content)
+    - [Branch Dashboard](https://dashboard.branch.io/liveview/content)에서 데이터를 검증합니다.
 
     - *Java*
 
@@ -636,13 +636,13 @@
         BranchEvent(BRANCH_STANDARD_EVENT.VIEW_ITEM).addContentItems(buo).logEvent(context)
         ```
 
-- ### Track users
+- ### 사용자 트래킹
 
-    - Sets the identity of a user (email, ID, UUID, etc) for events, deep links, and referrals
+    - 이벤트, 딥링크, Referral에 사용자에 대한 식별자(email, ID, UUID, etc)를 설정합니다. 사용자의 식별자 설정의 경우 꼭 사내 개인정보보호 관련부서와 사전 논의합니다.
 
-    - `127` character max for user id
+    - 설정가능한 사용자 식별자의 최대 길이는 `127`입니다.
 
-    - Validate with the [Branch Dashboard](https://dashboard.branch.io/liveview/identities)
+    - [Branch Dashboard](https://dashboard.branch.io/liveview/identities)에서 데이터를 검증합니다.
 
     - *Java*
 
@@ -664,33 +664,33 @@
         Branch.getInstance().logout()
         ```
 
-- ### Track events
+- ### 이벤트 트래킹
 
-    - All events related to a customer purchasing are bucketed into a "Commerce" class of data items
+    - 고객의 구매활동과 관련된 모든 이벤트들은 "Commerce" 클래스의 데이터아이템으로 분류됩니다.
 
-    - All events related to users interacting with your in-app content are bucketed to a "Content" class of data items.
+    - 사용자가 앱내 컨텐츠와 상호작용하는 것에 관련된 모든 이벤트들은 "Content" 클래스의 데이터아이템으로 분류됩니다.
 
-    - All events related to users progressing in your app are bucketed to a "Lifecycle" class of data items.
+    - 사용자들이 앱사용을 진행하면서 발생하는 것에 관련된 모든 이벤트들은 "lifecycle" 클래스의 데이터아이템으로 분류됩니다.
 
-    - To track custom events - not found in the table below - please see [Track Custom Events](https://docs.branch.io/pages/apps/v2event/#track-custom-events)
+    - 아래의 표에 없는 커스텀 이벤트에 대한 트래킹은 [Track Custom Events](https://docs.branch.io/pages/apps/v2event/#track-custom-events)문서를 참고하세요.
 
-    - Validate with the [Branch Dashboard](https://dashboard.branch.io/liveview/events)
+    - [Branch Dashboard](https://dashboard.branch.io/liveview/events)에서 데이터를 검증합니다.
 
 
     {! ingredients/sdk/v2-events.md !}
 
 
-- ### Handle referrals
+- ### Referral 처리
 
-    - Referral points are obtained from referral rules on the [Branch Dashboard](https://dashboard.branch.io/referrals/rules)
+    - Referral 포인트는 [Branch Dashboard](https://dashboard.branch.io/referrals/rules)의 Referral 룰에 의해서 주어집니다.
 
-    - Validate on the [Branch Dashboard](https://dashboard.branch.io/referrals/analytics)
+    - [Branch Dashboard](https://dashboard.branch.io/referrals/analytics)에서 데이터를 검증합니다.
 
-    - Reward credits
+    - Reward credits (리워드 크레딧)
 
         -  [Referral guide](/pages/dashboard/analytics/#referrals)
 
-    - Redeem credits
+    - Redeem credits (크레딧 상환)
 
         - *Java*
 
@@ -704,7 +704,7 @@
             Branch.getInstance().redeemRewards(5)
             ```
 
-    - Load credits
+    - Load credits (크레딧 로딩)
 
         - *Java*
 
@@ -730,7 +730,7 @@
             }
             ```
 
-    - Load history
+    - Load history (히스토리 로딩)
 
         - *Java*
 
@@ -762,9 +762,9 @@
             }
             ```
 
-- ### Handle push notification
+- ### 푸시알림 처리
 
-    - Deep link to content from GCM push notifications just by adding a Branch link to your result intent
+    - Result Intent에 브랜치 링크를 추가해서 GCM 푸시 알림을 통한 컨텐츠로의 딥링킹이 처리됩니다.
 
     - *Java*
 
@@ -784,9 +784,9 @@
         intent.putExtra("branch_force_new_session", true)
         ```
 
-- ### Handle links in your own app
+- ### 앱 내에서 링크 처리
 
-    - Allows you to deep link into your own app from your app itself by launching a Chrome intent
+    - Chrome Intent를 실행해서 앱내에서 현재앱내로의 딥링킹을 수행할수 있습니다.
 
     - *Java*
 
@@ -806,31 +806,31 @@
         startActivity(intent)
         ```
 
-    - Replace "http://xxxx.app.link/testlink" with your own link URL
+    - "http://xxxx.app.link/testlink"를 실제 링크 URL로 변경하세요.
 
 !!! warning
-    Handling a new deep link in your app will clear the current session data and a new referred "open" will be attributed.
+    앱내에서 새로운 딥링크를 처리하는 경우 현재의 세션 데이터가 지워지고, 새로 참조된 "open"으로 애트리뷰션이 됩니다.
 
-- ### Enable 100% matching
+- ### 100% 정확도 매칭 활성화
 
-    - Uses `Chrome Tabs` to increase attribute matching success
+    - 애트리뷰션의 정확도를 향상 시키기위해 `Chrome Tabs`을 사용합니다.
 
-    - Add `compile 'com.android.support:customtabs:23.3.0'` to your `build.gradle`
+    - `build.gradle`파일에 `compile 'com.android.support:customtabs:23.3.0'`을 추가합니다.
 
-- ### Enable / Disable User Tracking
+- ### 사용자 트래킹 활성화 / 비활성화
 
-    If you need to comply with a user's request to not be tracked for GDPR purposes, or otherwise determine that a user should not be tracked, utilize this field to prevent Branch from sending network requests. This setting can also be enabled across all users for a particular link, or across your Branch links.
+    GDPR관련 또는 다른 목적으로 트래킹을 원치 않는 사용자의 요청에 대응할 필요가 있다면, 네트워크 데이터전송을 차단하여 해당 사용자에 대한 트래킹을 중단할 수 있습니다. 이 기능은 특정링크 또는 브랜치 링크를 통해서 어떤 사용자에게든 활성화 할 수 있습니다.
 
     ```java
     Branch.getInstance().disableTracking(true);
     ```
 
-    You can choose to call this throughout the lifecycle of the app. Once called, network requests will not be sent from the SDKs. Link generation will continue to work, but will not contain identifying information about the user. In addition, deep linking will continue to work, but will not track analytics for the user.
+    앱이 실행되는 동안 호출이 가능하며, 한번 호출이 되면 브랜치 SDK의 모든 네트워크 데이터 전송이 차단됩니다. 링크생성 기능은 계속 동작합니다만, 해당 유저를 식별할 수 있는 정보는 포함되지 않을 것입니다. 딥링킹도 계속 동작하지만 해당 유저에 대한 분석정보는 트래킹되지 않을 것입니다.
 
 
-## Troubleshoot issues
+## 문제 해결
 
-- ### Enable logging
+- ### 로깅기능 활성화
 
     - *Java*
 
@@ -838,9 +838,9 @@
         Branch.enableLogging();
         ```
 
-- ### Test your Branch Integration
+- ### 브랜치 연동 테스트
 
-    Test your Branch Integration by calling `IntegrationValidator.validate` in your MainActivity's onStart(). Check your ADB Logcat to make sure all the SDK Integration tests pass. Make sure to comment out or remove `IntegrationValidator.validate` in your production build.
+    메인 Activity의 onStart()메쏘드 내에서 `IntegrationValidator.validate`메쏘드를 호출해서 브랜치연동에 관련된 항목들을 테스트 할수 있습니다. ADB Logcat을 통해서 SDK 연동 테스트가 통과 되는지 확인하시기 바랍니다. 상용/릴리즈 빌드에서는 `IntegrationValidator.validate` 메쏘드를 꼭 주척처리해서 제거 해주어야 합니다.
 
     - *Java*
 
@@ -849,48 +849,48 @@
         ```
 
 
-- ### Sample testing apps
+- ### 샘플 테스트 앱
 
     - [Branchsters](https://github.com/BranchMetrics/Branch-Example-Deep-Linking-Branchster-Android)
 
     - [Testbed](https://github.com/BranchMetrics/android-branch-deep-linking/tree/master/Branch-SDK-TestBed)
 
-- ### Simulate an install
+- ### 인스톨 시뮬레이션
 
-    - Need to bypass the device's hardware_id
+    - 기기의 hardware_id 수집을 우회합니다.
 
-        - Set `true` in your `AndroidManifest.xml`
+        - `AndroidManifest.xml`에서 아래와 같이 `true`로 설정합니다.
 
             ```xml
             <meta-data android:name="io.branch.sdk.TestMode" android:value="true" />
             ```
-        - *[or]* add `Branch.enableTestMode();` before your `Branch.getInstance().initSession()`
+        - *[또는]* `Branch.getInstance().initSession()` 호출 이전에 `Branch.enableTestMode();` 을 추가합니다.
 
-        - Do not use `TestMode` in production or in the Google Play Store
+        - 상용/릴리즈 빌드나 Google Play Store 제출용 버전에서는 `TestMode`를 사용하면 안됩니다.
 
-    - Uninstall your app from the device
+    - 기기에서 앱을 삭제
 
-    - Click on any Branch deep link (will navigate to the fallback URL since the app is not installed)
+    - 브랜치 딥링크를 클릭합니다. (앱이 설치되어있지 않으므로 fallback URL로 이동 할것입니다.)
 
-    - Reinstall your app
+    - 앱을 재설치 합니다.
 
-    - Read deep link data from `Branch.getInstance().initSession()` for `+is_first_session=true`
+    - `Branch.getInstance().initSession()`에서 딥링크 데이터를 읽어 `+is_first_session=true`이 반환되는지 확인합니다.
 
-- ### Track content properties
+- ### 컨텐츠 속 트래킹
 
-    - Used for [Track content](#track-content)
+    - [컨텐츠 트래킹](#컨텐츠-트래킹)에 사용됩니다.
 
         | Key | Value
         | --- | ---
-        | BNCRegisterViewEvent | User viewed the object
-        | BNCAddToWishlistEvent | User added the object to their wishlist
-        | BNCAddToCartEvent | User added object to cart
-        | BNCPurchaseInitiatedEvent | User started to check out
-        | BNCPurchasedEvent | User purchased the item
-        | BNCShareInitiatedEvent | User started to share the object
-        | BNCShareCompletedEvent | User completed a share
+        | BNCRegisterViewEvent | 오브젝트 조회
+        | BNCAddToWishlistEvent | Wishlist에 오브젝트 추가
+        | BNCAddToCartEvent | Cart에 오브젝트 추가
+        | BNCPurchaseInitiatedEvent | Check-out 시작
+        | BNCPurchasedEvent | 아이템 구매완료
+        | BNCShareInitiatedEvent | 오브젝트 공유 시작
+        | BNCShareCompletedEvent | 오브젝트 공유 완료
 
-- ### Using bnc.lt or a custom link domain
+- ### bnc.lt 또는 커스텀 링크 도메인 사용
 
     - *bnc.lt link domain*
 
@@ -922,13 +922,14 @@
         </activity>
         ```
 
-    - Change the following values to match your [Branch Dashboard](https://dashboard.branch.io/settings/link)
+    - 아래의 커스텀 도메인을 [Branch Dashboard](https://dashboard.branch.io/settings/link)에 설정된 값으로 변경합니다.
 
         - `your.app.com`
 
- - ### Branch with Fabric Answers
 
-    - If you do not want to import `answers-shim`
+ - ### 브랜치와 Fabric Answers
+
+    - `answers-shim`의 임포트를 원하지 않을 경우
 
         ```
         compile ('io.branch.sdk.android:library:2.+') {
@@ -936,25 +937,25 @@
         }
         ```
 
-- ### Deep link routing
+- ### 딥링크 라우팅
 
-    - Loads a specific URI Scheme path, for example
+    - 아래와 같은 특정 URL Scheme Path를 로딩합니다.
         - `$deeplink_path="content/123"`
         - `$android_deeplink_path="content/123"`
 
-    - Recommend to use [Navigate to content](#navigate-to-content) instead
+    - [컨텐츠로의 이동](#컨텐츠로의-이동)의 사용을 권장합니다.
 
         ```xml
         <meta-data android:name="io.branch.sdk.auto_link_path" android:value="content/123/, another/path/, another/path/*" />
         ```
 
-- ### Deep link routing in app
+- ### 앱내의 딥링크 라우딩
 
-    - Used for `WebView` and `ChromeTab` within the app to render HTML normally
+    - 앱내에서 HTML을 정상적으로 렌더링하기 위해서 `WebView`와 `ChromeTab`이 사용됩니다.
 
-    - Branch links within the `WebView` will route internally within your app, while other contents will continue to route externally
+    - `WebView`내의 브랜치 링크는 앱내로 라우팅 되지만 다른 컨텐츠들은 앱외부로 라우팅 됩니다.
 
-    - Launch Branch deep links with `Web View`
+    - `Web View`로 브랜치 딥링크 열기
 
         - *Java*
 
@@ -1032,7 +1033,7 @@
             }
             ```
 
-    - Launch Branch deep links with `Chrome Tabs`
+    - `Chrome Tabs`로 브랜치 딥링크 열기
 
         - *Java*
 
@@ -1056,9 +1057,9 @@
             //finish() if launching same activity
             ```
 
-- ### Deep link activity finishes
+- ### 딥링크 Activity의 종료
 
-    - Be notified when the deep link Activity finishes
+    - 딥링크 Activity가 종료될때 알림을 받는 방법
 
         ```xml
         <meta-data android:name="io.branch.sdk.auto_link_request_code" android:value="@integer/AutoDeeplinkRequestCode" />
@@ -1097,16 +1098,16 @@
         }
         ```
 
-- ### Test Deeplink routing for your Branch links
+- ### 브랜치링크에 대한 딥링크 테스트
 
-    Append `?bnc_validate=true` to any of your app's Branch links and click it on your mobile device (not the Simulator!) to start the test. For instance, to validate a link like: `"https://<yourapp\>.app.link/NdJ6nFzRbK"` click on: `"https://<yourapp\>.app.link/NdJ6nFzRbK?bnc_validate=true"`
+    브랜치 링크에 `?bnc_validate=true`를 추가한 뒤 (시뮬레이터가 아닌) 실제 기기에서 클릭하여 테스트 합니다. 예를들면 샘플 브랜치 링크 `"https://<yourapp\>.app.link/NdJ6nFzRbK"`에 대해서 `"https://<yourapp\>.app.link/NdJ6nFzRbK?bnc_validate=true"`링크를 클릭합니다.
 
 
-- ### Pre Android 15 support
+- ### Android 15 이전 버전 지원
 
-    - Use `Branch SDK 1.14.5`
+    - `Branch SDK 1.14.5`를 사용합니다.
 
-    - Add to `onStart()` and `onStop()`
+    - `onStart()`와 `onStop()`에 아래의 코드를 추가 합니다.
 
     - *Java*
 
@@ -1138,19 +1139,19 @@
         }
         ```
 
-- ### Using the default application class
+- ### 디폴트 Application 클래스 사용
 
-    - If your app does not have an application class
+    - 앱에 Application클래스가 없는 경우
 
         ```xml
         <application android:name="io.branch.referral.BranchApp">
         ```
 
-- ### Custom install referrer class
+- ### 커스텀 Install Referrer 리시버
 
-    - Google only allows one `BroadcastReceiver` per application
+    - 안드로이드에서는 앱당 하나의 `BroadcastReceiver`만 허용됩니다.
 
-    - Add to your `AndroidManifest.xml`
+    - `AndroidManifest.xml`에 아래의 내용을 추가합니다.
 
         ```xml
         <receiver android:name="com.BRANCH SDK.CustomInstallListener" android:exported="true">
@@ -1160,7 +1161,7 @@
         </receiver>
         ```
 
-    - Create an instance of `io.branch.referral.InstallListener` in `onReceive()`
+    - `onReceive()`내에서 `io.branch.referral.InstallListener` 인스턴스를 생성합니다.
 
     - *Java*
 
@@ -1176,29 +1177,29 @@
         listener.onReceive(context, intent)
         ```
 
-- ### Generate signing certificate
+- ### Signing Certificate 생성
 
-    - Used for Android `App Link` deep linking
+    - Android `App Links` 딥링킹 지원을 위한 것입니다.
 
-    - Navigate to your keystore file
+    - 키스토어 파일의 디렉토리로 이동합니다.
 
-    - Run `keytool -list -v -keystore my-release-key.keystore`
+    - `keytool -list -v -keystore my-release-key.keystore`를 실행합니다.
 
-    - Will generate a value like `AA:C9:D9:A5:E9:76:3E:51:1B:FB:35:00:06:9B:56:AC:FB:A6:28:CE:F3:D6:65:38:18:E3:9C:63:94:FB:D2:C1`
+    - `AA:C9:D9:A5:E9:76:3E:51:1B:FB:35:00:06:9B:56:AC:FB:A6:28:CE:F3:D6:65:38:18:E3:9C:63:94:FB:D2:C1`와 같은 값이 생성될것입니다.
 
-    - Copy this value to your [Branch Dashboard](https://dashboard.branch.io/link-settings)
+    - 이 값을 [Branch Dashboard](https://dashboard.branch.io/link-settings)에 복사합니다.
 
-- ### Matching through the install listener
+- ### 인스톨 리스너를 통한 매칭
 
-    - Enable the ability to pass `link_click_id` from Google Play to Branch
+    - 구글플레이에서 브랜치로의 `link_click_id`전달 기능을 활성화 시킵니다.
 
-    - This will increase attribution and deferred deep linking accuracy
+    - 이를 통해 애트리뷰션과 Deferred Deep Linking의 정확도를 향상됩니다.
 
-    - Branch default is `1.5` seconds to wait for Google Play analytics
+    - 브랜치의 기본설정은 `1.5`초 동안 구글 플레이로부터 인스톨 레퍼러 수신을 대기 합니다.
 
-    - You can optimize the performance based on needs (e.g. `0`, `5000`, `10000`)
+    - 필요에 따라서 해당 값을 최적화 할수 있습니다. (예. `0`, `5000`, `10000`)
 
-    - Add to your application class before `getAutoInstance` ([Load Branch](#load-branch))
+    - Application클래스의 `getAutoInstance` ([브랜치 로딩](#브랜치-로딩)) 앞에 추가합니다.
 
     - *Java*
 
@@ -1212,17 +1213,17 @@
         Branch.setPlayStoreReferrerCheckTimeout(5_000)
         ```
 
-    - Test
+    - 테스트
 
         ```sh
         adb shell am broadcast -a com.android.vending.INSTALL_REFERRER -n io.branch.androidexampledemo/io.branch.referral.InstallListener --es "referrer" "link_click_id=123"
         ```
 
-- ### Enable multidexing
+- ### Multidexing 활성화
 
-    - Adding additional dependencies may overrun the dex limit and lead to `NoClassDefFoundError` or `ClassNotFoundException`
+    - 참조할 라이브러리들이 추가되면서 Dex 제한을 초과하는 경우 `NoClassDefFoundError` 또는 `ClassNotFoundException`이 발생될 수 있습니다.
 
-    - Add to your `build.gradle`
+    - `build.gradle`에 추가합니다.
 
         ```java
         defaultConfig {
@@ -1230,7 +1231,7 @@
         }
         ```
 
-    - Add to your `Application class` and make sure it extends `MultiDexApplication`
+    - `Application class`에 다음의 코드를 추가해서 `MultiDexApplication`를 상속합니다.
 
     - *Java*
 
@@ -1251,41 +1252,46 @@
         }
         ```
 
-- ### InvalidClassException, ClassLoadingError or VerificationError
+- ### InvalidClassException, ClassLoadingError, 또는 VerificationError
 
-    - Often caused by a `Proguard` bug. Try the latest Proguard version or disable Proguard optimization by setting `-dontoptimize`
+    - 종종 `Proguard`의 버그로 인해 발생합니다. 최신 버전의 Proguard를 사용하거나 `-dontoptimize`설정을 사용해서 Proguard의 최적화 기능을 비활성화 합니다.
 
-- ### Proguard warning or errors with answers-shim module
+- ### answers-shim모듈 관련 Proguard warning 또는 error
 
-    - Often caused when you exclude the `answers-shim`. Try adding `-dontwarn com.crashlytics.android.answers.shim.**` to your `Proguard` file
+    - `answers-shim`을 제외시킬때 종종 발생합니다. `-dontwarn com.crashlytics.android.answers.shim.**`을 `Proguard`파일에 추가합니다.
 
-- ### Proguard warning or errors with AppIndexing module
+- ### AppIndexing 모듈 관련 Proguard warning 또는 error
 
-    - The Branch SDK has an optional dependency on Firebase app indexing and Android install referrer classes to provide new Firebase content listing features and support new Android install referrer library. This may cause a proguard warning depending on your proguard settings. Please add the following to your proguard file to solve this issue
+    - 브랜치 SDK는 Firebase의 컨텐츠 리스팅 기능과 새로운 Android Install Referrer Library지원을 위해서 Firebase의 앱 인덱싱 모듈과 안드로이드 인스톨 레퍼러 클래스들에 대한 선택적 의존성을 가지고 있습니다. 이로 인해 Progard 설정에 따라 Progard warning이 발생할 수 있습니다. 이 이슈를 해결하기 위해서는 다음의 내용을 Progard파일에 추가해야 합니다.
+
     `-dontwarn com.google.firebase.appindexing.**`  `-dontwarn com.android.installreferrer.api.**`
 
-- ### Proguard rules without Play Services Ads module
+- ### Play Services Ads 모듈을 제외하는 Proguard rule
 
-  - The Branch SDK has an optional dependency on Play Services Ads for GAID matching. Using Proguard without using this library can create issue in fetching the GAID while creating Branch session and events. Please add the following to your proguard file to solve this issue
-`-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient {
-com.google.android.gms.ads.identifier.AdvertisingIdClient$Info getAdvertisingIdInfo(android.content.Context);
-}`
-`-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info {
-java.lang.String getId();
-boolean isLimitAdTrackingEnabled();
-}`
+  - 브랜치 SDK는 GAID 수집해서 매칭에 활용하기 위해 Paly Services Ads에 대한 선택적 의존성을 가지고 있습니다. Progard사용시에 GAID수집에 관련된 문제가 없도록 하기 위해서는 다음의 내용을 Progard파일에 추가 해야 합니다.
 
-- ### Unable to open this link error
+    ```
+    -keep class com.google.android.gms.ads.identifier.AdvertisingIdClient {
+        com.google.android.gms.ads.identifier.AdvertisingIdClient$Info getAdvertisingIdInfo(android.content.Context);
+    }
+    -keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info {
+        java.lang.String getId();
+        boolean isLimitAdTrackingEnabled();
+    }
+    ```
 
-    - Happens whenever URI Scheme redirection fails.
-    - Make sure you do not have `$deeplink_path` or you have a `$deeplink_path` which your `AndroidManifest.xml` can accept
+- ### 이 링크를 열수 없다는 에러
 
-- ### Stuck in `initState_ == SESSION_STATE.INITIALISING`
+    - URI Scheme 리다이렉션이 실패할경우 발생합니다.
+    - `$deeplink_path`가 없도록 하거나 `AndroidManifest.xml`에서 허용된 `$deeplink_path`를 지정해야 합니다.
 
-    - Often caused because Branch does not have the right application context from your activity. To fix this, pass in the singleton class when you access the Branch instance:
+- ### `initState_ == SESSION_STATE.INITIALISING` 상태에서 멈추어 있을 경우
+
+    - Branch SDK가 올바른 Application Context를 Activity에서 가져오지 못한 경우 종종 발생합니다. Branch 인스턴스에 접근할때 아래와 같이 싱글톤 클래스로 전달해서 문제를 해결할 수 있습니다.
 
     ```java
     Branch.getInstance(getApplicationContext());
     ```
-- ### Minimum versions
-    If you'd like to support down to API version 9 on Android, please pin to version 1.14.5. If you'd like to support API level 15, please pin to a 2.x version. The minimum version we support for 3.x is Android version 16.
+
+- ### 최소 지원 안드로이드 버전
+    API Level 9(Android 2.3 GINGERBREAD)까지 앱에서 지원하기 위해서는 1.14.5를 사용해야 합니다. API Level 15(Android 4.0.3 ICE_CREAM_SANDWICH_MR1)까지 지원하기 위해서는 2.x버전을 사용해야 합니다. Branch SDK 3.x에서 지원하는 최소 Android API Level은 16(Android 4.1 JELLY_BEAN) 입니다.
