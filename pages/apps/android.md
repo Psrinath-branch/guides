@@ -876,7 +876,7 @@
 
     - `Branch.getInstance().initSession()`에서 딥링크 데이터를 읽어 `+is_first_session=true`이 반환되는지 확인합니다.
 
-- ### 컨텐츠 속 트래킹
+- ### 컨텐츠 속성 트래킹
 
     - [컨텐츠 트래킹](#컨텐츠-트래킹)에 사용됩니다.
 
