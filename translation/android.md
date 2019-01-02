@@ -1,12 +1,12 @@
 ## Integrate Branch
 
-- ### Configure Branch
+- ### Branch 설정
 
     - Complete the `Basic integration` within [Configure your dashboard](/pages/dashboard/integrate/)
 
     - Make sure `Always try to open app` and `I have an Android App` are both enabled
 
-        ![image](/img/pages/dashboard/android.png)
+        ![image](https://github.com/bson-branch/guides/blob/master/images/pages/dashboard/android.png?raw=true)
 
 - ### Install Branch
 
